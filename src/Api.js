@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import faker from "faker"
 import './Api.css';
 
 const App = () => {
@@ -30,6 +31,8 @@ const Cat = (props) => {
     return (
         <div>
             <p><img src={props.pic} className="imgCat rotate" /></p>
+            <p>Hi, my name is {faker.name.firstName()}. I love {faker.music.genre()}</p>
+            <button>please ADOPT ME</button>
         </div>
     )
 }
