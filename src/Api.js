@@ -29,8 +29,7 @@ if(!catsInfo){
 const Cat = (props) => {
     return (
         <div>
-            <p><img src={props.pic} className="rotate" /></p>
-            <p>Breed: {props.breed}</p>
+            <p><img src={props.pic} className="imgCat rotate" /></p>
         </div>
     )
 }
@@ -38,7 +37,7 @@ const Cat = (props) => {
 return (
     <div>
         {catsInfo.map((cat, index) => {
-            return <Cat key={index} pic={cat.url} breed={cat.breed} />
+            return <Cat key={index} pic={cat.url} />
             })}
     </div>
 )
