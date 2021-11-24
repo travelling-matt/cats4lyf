@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/cats4lyf/static/css/main.8c8b27cf.chunk.css",
+    "main.js": "/cats4lyf/static/js/main.c6bca1e2.chunk.js",
+    "main.js.map": "/cats4lyf/static/js/main.c6bca1e2.chunk.js.map",
+    "runtime-main.js": "/cats4lyf/static/js/runtime-main.ca862855.js",
+    "runtime-main.js.map": "/cats4lyf/static/js/runtime-main.ca862855.js.map",
+    "static/js/2.4799d6dd.chunk.js": "/cats4lyf/static/js/2.4799d6dd.chunk.js",
+    "static/js/2.4799d6dd.chunk.js.map": "/cats4lyf/static/js/2.4799d6dd.chunk.js.map",
+    "static/js/3.6b85309e.chunk.js": "/cats4lyf/static/js/3.6b85309e.chunk.js",
+    "static/js/3.6b85309e.chunk.js.map": "/cats4lyf/static/js/3.6b85309e.chunk.js.map",
+    "index.html": "/cats4lyf/index.html",
+    "static/css/main.8c8b27cf.chunk.css.map": "/cats4lyf/static/css/main.8c8b27cf.chunk.css.map",
+    "static/js/2.4799d6dd.chunk.js.LICENSE.txt": "/cats4lyf/static/js/2.4799d6dd.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/cats4lyf/static/media/logo.6ce24c58.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ca862855.js",
+    "static/js/2.4799d6dd.chunk.js",
+    "static/css/main.8c8b27cf.chunk.css",
+    "static/js/main.c6bca1e2.chunk.js"
+  ]
+}
