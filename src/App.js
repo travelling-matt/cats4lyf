@@ -1,17 +1,43 @@
-import react from "react";
+import React from "react";
+import Modal from "react-modal"
+import { useState } from "react";
+import Basket from "./Components/modal";
 
 
 
+// Modal.setAppElement("App")
 
-const Home = () => {
-  return <Cats />
+const App = () => {
+  const [showModal, setShowModal] = useState(false)
+  const handleOpenModal = () => {
+    setShowModal(true)
 }
-const Cats = (props) => {
+const handleCloseModal = () => {
+  setShowModal(false)
+}
+
   return (
-    <div className="cats">
-      <img src="" alt="" />
-      <h1>{props.name}</h1>
-      <button onClick=>Add</button>
+    <div>
+    <Modal isOpen={showModal} >
+    <Basket handleCloseModal={handleCloseModal}/>
+    </Modal>
+    <button onClick={handleOpenModal} >Open</button>
     </div>
   )
 }
+
+
+// const Home = () => {
+//   return <Cats />
+// }
+// const Cats = (props) => {
+//   return (
+//     <div className="cats">
+//       <img src="" alt="" />
+//       <h1>{props.name}</h1>
+//       <button onClick=>Add</button>
+//     </div>
+//   )
+// }
+
+export default App
