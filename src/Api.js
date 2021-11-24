@@ -32,6 +32,7 @@ const Cat = (props) => {
         <div>
             <p><img src={props.pic} className="imgCat rotate" /></p>
             <p>Hi, my name is {faker.name.firstName()}. I love {faker.music.genre()}</p>
+            <p>£{faker.finance.amount()}</p>
             <button>please ADOPT ME</button>
         </div>
     )
