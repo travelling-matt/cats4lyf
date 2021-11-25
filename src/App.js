@@ -123,7 +123,7 @@ const App = () => {
           <Basket count={count} setCount={setCount} handleCloseModal={handleCloseModal} catsInfo={catsInfo} catName={catName} catPrice={catPrice} basketAdd={basketAdd} setBasketAdd={setBasketAdd} total={total} setTotal={setTotal} />
         </Modal>
 
-        <button onClick={handleOpenModal} >Open</button>
+        <button onClick={handleOpenModal} >Open Basket</button>
       </div>
       <p>In basket: {count}</p>
 
