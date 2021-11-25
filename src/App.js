@@ -4,6 +4,7 @@ import faker from "faker"
 import './App.css';
 import Modal from "react-modal"
 import Basket from "./Components/modal";
+import CatImg from "./cats4lyf.png"
 
 
 const App = () => {
@@ -118,14 +119,17 @@ const App = () => {
 
   return (
     <div >
-      <div>
+      <div className="header">
         <Modal isOpen={showModal} >
           <Basket count={count} setCount={setCount} handleCloseModal={handleCloseModal} catsInfo={catsInfo} catName={catName} catPrice={catPrice} basketAdd={basketAdd} setBasketAdd={setBasketAdd} total={total} setTotal={setTotal} />
         </Modal>
 
         <button onClick={handleOpenModal} >Open Basket</button>
-      </div>
+      
       <p>In basket: {count}</p>
+      <img src={CatImg} />
+      </div>
+
 
       <div className="catGrid">
         {catsInfo.map((cat, index) => {
