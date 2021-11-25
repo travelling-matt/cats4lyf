@@ -1,43 +1,129 @@
-import React from "react";
-import Modal from "react-modal"
+
+   
 import { useState } from "react";
+import { useEffect } from "react";
+import faker from "faker"
+// import './Api.css';
+import Modal from "react-modal"
 import Basket from "./Components/modal";
 
 
-
-// Modal.setAppElement("App")
-
 const App = () => {
+
+  const [catsInfo, setCatsInfo] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(
+    {
+      error:false,
+      message: ""
+    }
+  );
   const [showModal, setShowModal] = useState(false)
-  const handleOpenModal = () => {
-    setShowModal(true)
+
+//   const [catAndName, setCatAndName] = useState(
+//       {
+//           url: "",
+//           name: "",
+//           genre: "",
+//           price: ""
+//       }
+//   );
+  const [basketAdd, setBasketAdd] = useState([])
+    const [catName, setCatName] = useState([])
+
+
+  const handler = async () => {
+    try {
+        setLoading(true);
+        const response = await fetch("https://api.thecatapi.com/v1/images/search?limit=12") 
+        console.log("http response", response)
+        if(response.status !== 200){
+            throw new Error("oops http error");
+        }
+        const data = await response.json();
+        console.log("API info all", data);
+        console.log("API info array 0", data[0]);
+        
+        
+        setCatsInfo(data);
+
+        console.log(catsInfo);
+        setLoading(false);
+    } catch(err) {
+    setError({ error:true, message: error.message})
+    }
+};
+console.log(basketAdd)
+console.log(catsInfo);
+
+  const addBasketHandler = (name, index) => {
+    const storedBasket= [...basketAdd]
+    storedBasket.push(name)
+    setBasketAdd(storedBasket)
+    ;
+  }
+
+useEffect(() => {
+    handler();
+    console.log("use effect ran");
+    
+},[]);
+
+if(!catsInfo){
+    return <p>loading...</p>
+}
+
+if(error.error){
+    return <h1>{error.message}</h1>
+}
+
+const handleOpenModal = () => {
+  setShowModal(true)
 }
 const handleCloseModal = () => {
-  setShowModal(false)
+setShowModal(false)
 }
 
-  return (
+const fakeNameHandler = () => {
+  const storedCatNames = [...catName]
+  storedCatNames.push(faker.name.firstName)
+  setCatName(storedCatNames)
+  console.log(catName);
+  
+
+}
+
+const Cat = (props) => {
+    return (
+        <div>
+            <p><img src={props.pic} className="imgCat rotate" alt="cat"/></p>
+            <p>Hi, my name is {props.name}. I love {props.music}</p>
+            <p>£{props.amount}</p>
+            <p>my name is: {props.name}</p>
+            setCatPrices.push (name, index, faker.finance.amount)
+            <button onClick={() => addBasketHandler(props.name, props.index)}>please ADOPT ME</button>
+        </div>
+    )
+}
+
+return (
     <div>
-    <Modal isOpen={showModal} >
-    <Basket handleCloseModal={handleCloseModal}/>
+        <div>
+        <Modal isOpen={showModal} >
+    <Basket handleCloseModal={handleCloseModal} catsInfo={catsInfo}/>
     </Modal>
+    
+{/* ///////////////////////////////////////////////// */}
+
     <button onClick={handleOpenModal} >Open</button>
+        </div>
+        {catsInfo.map((cat, index) => {
+            return <Cat key={index} pic={cat.url} index ={index} name={fakeNameHandler} catName={catName[index]} music={faker.music.genre()} amount={faker.finance.amount()}/>
+            })}
+
     </div>
-  )
+)
+
 }
+export default App;
 
-
-// const Home = () => {
-//   return <Cats />
-// }
-// const Cats = (props) => {
-//   return (
-//     <div className="cats">
-//       <img src="" alt="" />
-//       <h1>{props.name}</h1>
-//       <button onClick=>Add</button>
-//     </div>
-//   )
-// }
-
-export default App
