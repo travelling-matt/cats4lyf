@@ -20,16 +20,11 @@ const App = () => {
   );
   const [showModal, setShowModal] = useState(false)
 
-//   const [catAndName, setCatAndName] = useState(
-//       {
-//           url: "",
-//           name: "",
-//           genre: "",
-//           price: ""
-//       }
-//   );
   const [basketAdd, setBasketAdd] = useState([])
     const [catName, setCatName] = useState([])
+    const [catPrice, setCatPrice] = useState([])
+    const [total, setTotal] = useState("")
+    const [genre, setGenre] = useState([])
 
 
   const handler = async () => {
@@ -44,40 +39,53 @@ const App = () => {
         console.log("API info all", data);
         console.log("API info array 0", data[0]);
         
-        
+        console.log(catsInfo.length);
         setCatsInfo(data);
 
-        console.log(catsInfo);
+        
+        
+        
         setLoading(false);
     } catch(err) {
     setError({ error:true, message: error.message})
     }
 };
-console.log(basketAdd)
-console.log(catsInfo);
 
-  const addBasketHandler = (name, index) => {
+console.log(basketAdd);
+console.log(total);
+  const addBasketHandler = (name, index, url, amount) => {
     const storedBasket= [...basketAdd]
-    storedBasket.push(name)
+    storedBasket.push({name: name, url: url, amount: amount})
     setBasketAdd(storedBasket)
-    ;
+    const storedTotal = [...total]
+    storedTotal.push(parseFloat(amount))
+    setTotal(storedTotal)
+    
+    
   }
 const fakeNameHandler = () => {
   const storedCatNames = [...catName]
+  const storedCatPrice = [...catPrice]
+  const storedGenre = [...genre]
 
-  for (let i = 0; i < catsInfo.length; i++){
+  for (let i = 0; i < 12; i++){
     storedCatNames.push(faker.name.firstName())
   setCatName(storedCatNames)
-  console.log(catName);}
 
-  
-  
+  storedCatPrice.push(faker.finance.amount())
+  setCatPrice(storedCatPrice)
+
+  storedGenre.push(faker.music.genre())
+  setGenre(storedGenre)
+} 
 }
 useEffect(() => {
+  if (catsInfo.length === 0) {
     handler();
-    console.log("use effect ran");
+    console.log("use effect ran");}
     fakeNameHandler()
 },[]);
+
 
 if(!catsInfo){
     return <p>loading...</p>
@@ -103,8 +111,7 @@ const Cat = (props) => {
             <p>Hi, my name is {props.catName}. I love {props.music}</p>
             <p>£{props.amount}</p>
             <p>my name is: {props.catName}</p>
-            setCatPrices.push (name, index, faker.finance.amount)
-            <button onClick={() => addBasketHandler(props.catName, props.index)}>please ADOPT ME</button>
+            <button onClick={() => addBasketHandler(props.catName, props.index, props.pic, props.amount)}>please ADOPT ME</button>
         </div>
     )
 }
@@ -113,7 +120,7 @@ return (
     <div>
         <div>
         <Modal isOpen={showModal} >
-    <Basket handleCloseModal={handleCloseModal} catsInfo={catsInfo}/>
+    <Basket handleCloseModal={handleCloseModal} catsInfo={catsInfo} catName={catName} catPrice={catPrice} basketAdd={basketAdd} setBasketAdd={setBasketAdd} total={total} setTotal={setTotal}/>
     </Modal>
     
 {/* ///////////////////////////////////////////////// */}
@@ -122,7 +129,7 @@ return (
         </div>
         {catsInfo.map((cat, index) => {
             
-            return <Cat key={index} pic={cat.url} index={index}  catName={catName[index]} music={faker.music.genre()} amount={faker.finance.amount()}/>
+            return <Cat key={index} pic={cat.url} index={index}  catName={catName[index]} music={genre[index]} amount={catPrice[index]}/>
             })}
 
     </div>
