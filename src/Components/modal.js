@@ -5,7 +5,7 @@ import React from 'react';
 
 const _ = require("lodash")
 
-const Basket = ({handleCloseModal, catsInfo, basketAdd, setBasketAdd, total, setTotal}) => {
+const Basket = ({handleCloseModal, catsInfo, basketAdd, setBasketAdd, total, setTotal, count, setCount}) => {
 
     const removeItemHandler = (index) => {
         const storedBasket = [...basketAdd]
@@ -14,6 +14,7 @@ const Basket = ({handleCloseModal, catsInfo, basketAdd, setBasketAdd, total, set
         const storedTotal = [...total]
         storedTotal.splice(index,1)
         setTotal(storedTotal)
+        setCount(count-1)
     }   
     const totalSum = _.sum(total).toFixed(2)
 

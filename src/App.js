@@ -23,6 +23,7 @@ const App = () => {
   const [total, setTotal] = useState("")
   const [genre, setGenre] = useState([])
 
+  const [count, setCount] = useState(0)
 
   const handler = async () => {
     try {
@@ -47,6 +48,7 @@ const App = () => {
 
   console.log(basketAdd);
   console.log(total);
+
   const addBasketHandler = (name, index, url, amount) => {
     const storedBasket = [...basketAdd]
     storedBasket.push({ name: name, url: url, amount: amount })
@@ -55,6 +57,8 @@ const App = () => {
     const storedTotal = [...total]
     storedTotal.push(parseFloat(amount))
     setTotal(storedTotal)
+
+    setCount(count+1)
   }
 
   const fakeNameHandler = () => {
@@ -114,13 +118,14 @@ const App = () => {
     <div>
       <div>
         <Modal isOpen={showModal} >
-          <Basket handleCloseModal={handleCloseModal} catsInfo={catsInfo} catName={catName} catPrice={catPrice} basketAdd={basketAdd} setBasketAdd={setBasketAdd} total={total} setTotal={setTotal} />
+          <Basket count={count} setCount={setCount} handleCloseModal={handleCloseModal} catsInfo={catsInfo} catName={catName} catPrice={catPrice} basketAdd={basketAdd} setBasketAdd={setBasketAdd} total={total} setTotal={setTotal} />
         </Modal>
 
         <button onClick={handleOpenModal} >Open</button>
       </div>
+      <p>In basket: {count}</p>
       {catsInfo.map((cat, index) => {
-        return <Cat key={index} pic={cat.url} index={index} catName={catName[index]} music={genre[index]} amount={catPrice[index]} />
+        return <Cat key={index} pic={cat.url} index={index} catName={catName[index]} music={genre[index]} amount={catPrice[index]}  />
       })}
     </div>
   )
