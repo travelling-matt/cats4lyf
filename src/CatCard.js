@@ -3,9 +3,10 @@ import React from 'react';
 function CatCard(props) {
     return ( 
         <div className='catCard'>
-            <img src={props.image} className='image'/>
-            <h3 className="name">{props.name}</h3>
-            <button className="addBtn">+</button>
+            <img src={props.pic} className='image'/>
+            <p className='info'>Hi, my name is {faker.name.firstName()}</p>
+            <p>£{faker.finance.amount()}</p>
+            <button className="addBtn" onClick={handler}>+</button>
         </div>
      );
 }
