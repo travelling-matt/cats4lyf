@@ -62,11 +62,21 @@ console.log(catsInfo);
     setBasketAdd(storedBasket)
     ;
   }
+const fakeNameHandler = () => {
+  const storedCatNames = [...catName]
 
+  for (let i = 0; i < catsInfo.length; i++){
+    storedCatNames.push(faker.name.firstName())
+  setCatName(storedCatNames)
+  console.log(catName);}
+
+  
+  
+}
 useEffect(() => {
     handler();
     console.log("use effect ran");
-    
+    fakeNameHandler()
 },[]);
 
 if(!catsInfo){
@@ -84,24 +94,17 @@ const handleCloseModal = () => {
 setShowModal(false)
 }
 
-const fakeNameHandler = () => {
-  const storedCatNames = [...catName]
-  storedCatNames.push(faker.name.firstName)
-  setCatName(storedCatNames)
-  console.log(catName);
-  
 
-}
 
 const Cat = (props) => {
     return (
         <div>
             <p><img src={props.pic} className="imgCat rotate" alt="cat"/></p>
-            <p>Hi, my name is {props.name}. I love {props.music}</p>
+            <p>Hi, my name is {props.catName}. I love {props.music}</p>
             <p>£{props.amount}</p>
-            <p>my name is: {props.name}</p>
+            <p>my name is: {props.catName}</p>
             setCatPrices.push (name, index, faker.finance.amount)
-            <button onClick={() => addBasketHandler(props.name, props.index)}>please ADOPT ME</button>
+            <button onClick={() => addBasketHandler(props.catName, props.index)}>please ADOPT ME</button>
         </div>
     )
 }
@@ -118,7 +121,8 @@ return (
     <button onClick={handleOpenModal} >Open</button>
         </div>
         {catsInfo.map((cat, index) => {
-            return <Cat key={index} pic={cat.url} index ={index} name={fakeNameHandler} catName={catName[index]} music={faker.music.genre()} amount={faker.finance.amount()}/>
+            
+            return <Cat key={index} pic={cat.url} index={index}  catName={catName[index]} music={faker.music.genre()} amount={faker.finance.amount()}/>
             })}
 
     </div>
