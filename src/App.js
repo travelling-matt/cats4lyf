@@ -107,7 +107,7 @@ const App = () => {
     return (
       <div className="card">
         <img src={props.pic} className="imgCat rotate" alt="cat" />
-        <p>Hi, my name is {props.catName}. I love {props.music}</p>
+        <p>Hi, my name is {props.catName}. I love {props.music} music.</p>
         <div className="cardFooter">
           <p>£{props.amount}</p>
 
@@ -123,11 +123,15 @@ const App = () => {
         <Modal isOpen={showModal} >
           <Basket count={count} setCount={setCount} handleCloseModal={handleCloseModal} catsInfo={catsInfo} catName={catName} catPrice={catPrice} basketAdd={basketAdd} setBasketAdd={setBasketAdd} total={total} setTotal={setTotal} />
         </Modal>
+        <img className="cats5lyf" src={CatImg} />
+        <div className="countBtn">
+          <p>In basket: {count}</p>
+          
+          <button onClick={handleOpenModal} >Open Basket</button>
+          </div>
 
-        <button onClick={handleOpenModal} >Open Basket</button>
-      
-      <p>In basket: {count}</p>
-      <img src={CatImg} />
+
+        
       </div>
 
 
