@@ -12,6 +12,6 @@
   }
 
 .imgCat {
-    max-height: 400px;
-    max-width: 400px;
+    height: auto;
+    width: 400px;
   }

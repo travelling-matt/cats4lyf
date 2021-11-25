@@ -15,8 +15,7 @@ const App = () => {
         console.log("API info all", data);
         console.log("API info array 0", data[0]);
         setCatsInfo(data);
-        console.log(catsInfo);
-   
+        console.log(catsInfo);   
 };
 
 useEffect(() => {
@@ -29,7 +28,7 @@ if(!catsInfo){
 
 const Cat = (props) => {
     return (
-        <div>
+        <div class="container">
             <p><img src={props.pic} className="imgCat rotate" /></p>
             <p>Hi, my name is {faker.name.firstName()}. I love {faker.music.genre()}</p>
             <p>£{faker.finance.amount()}</p>
