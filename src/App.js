@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import faker from "faker"
-// import './Api.css';
+import './App.css';
 import Modal from "react-modal"
 import Basket from "./Components/modal";
 
@@ -58,7 +58,7 @@ const App = () => {
     storedTotal.push(parseFloat(amount))
     setTotal(storedTotal)
 
-    setCount(count+1)
+    setCount(count + 1)
   }
 
   const fakeNameHandler = () => {
@@ -104,18 +104,20 @@ const App = () => {
 
   const Cat = (props) => {
     return (
-      <div>
-        <p><img src={props.pic} className="imgCat rotate" alt="cat" /></p>
+      <div className="card">
+        <img src={props.pic} className="imgCat rotate" alt="cat" />
         <p>Hi, my name is {props.catName}. I love {props.music}</p>
-        <p>£{props.amount}</p>
+        <div className="cardFooter">
+          <p>£{props.amount}</p>
 
-        <button onClick={() => addBasketHandler(props.catName, props.index, props.pic, props.amount)}>please ADOPT ME</button>
+          <button className="adoptBtn" onClick={() => addBasketHandler(props.catName, props.index, props.pic, props.amount)}>please ADOPT ME</button>
+        </div>
       </div>
     )
   }
 
   return (
-    <div>
+    <div >
       <div>
         <Modal isOpen={showModal} >
           <Basket count={count} setCount={setCount} handleCloseModal={handleCloseModal} catsInfo={catsInfo} catName={catName} catPrice={catPrice} basketAdd={basketAdd} setBasketAdd={setBasketAdd} total={total} setTotal={setTotal} />
@@ -124,9 +126,12 @@ const App = () => {
         <button onClick={handleOpenModal} >Open</button>
       </div>
       <p>In basket: {count}</p>
-      {catsInfo.map((cat, index) => {
-        return <Cat key={index} pic={cat.url} index={index} catName={catName[index]} music={genre[index]} amount={catPrice[index]}  />
-      })}
+
+      <div className="catGrid">
+        {catsInfo.map((cat, index) => {
+          return <Cat key={index} pic={cat.url} index={index} catName={catName[index]} music={genre[index]} amount={catPrice[index]} />
+        })}
+      </div>
     </div>
   )
 
