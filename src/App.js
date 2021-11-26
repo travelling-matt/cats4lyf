@@ -105,7 +105,7 @@ const App = () => {
 
   const Cat = (props) => {
     return (
-      <div className="card">
+      <div data-testId="catDiv" className="card">
         <img src={props.pic} className="imgCat rotate" alt="cat" />
         <p>Hi, my name is {props.catName}. I love {props.music} music.</p>
         <div className="cardFooter">
